@@ -143,5 +143,10 @@ def get_runtime(catalog_id: str = "fma") -> RuntimeBundle:
         # Local-only forbids the Gemini research leg. An explicit research click
         # may still resolve the public recording identity through MusicBrainz;
         # the UI discloses that only title and artist leave the session.
-        provider_free_research_agent=TrackResearchAgent(),
+                provider_free_research_agent=TrackResearchAgent(
+            offline_reason=(
+                "Web research is off for this session to protect your privacy. "
+                "Showing local FMA evidence."
+            )
+        ),
     )

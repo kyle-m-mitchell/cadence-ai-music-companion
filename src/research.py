@@ -693,7 +693,9 @@ class TrackResearchAgent:
         # Tier 3 — deterministic local summary.
         trace.append("local fallback")
         if self._researcher is None and self._note_writer is None:
-            warning = "Optional web research is not configured. Showing local FMA evidence."
+                        warning = self._offline_reason or (
+                "Optional web research is not configured. Showing local FMA evidence."
+            )
         else:
             warning = (
                 "Web research is unavailable right now (provider limit or no match). "

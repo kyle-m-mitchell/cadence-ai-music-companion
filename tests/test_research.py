@@ -321,3 +321,10 @@ def test_ambiguous_identity_abstains_before_any_search():
     assert outcome.brief.status is ResearchStatus.LOCAL_FALLBACK
     assert "grounded search attempted" not in outcome.trace
     assert outcome.trace[-2:] == ("identity abstained", "local fallback")
+
+def test_offline_reason_replaces_not_configured_message():
+    """A privacy-locked agent explains why research is off, not 'not configured'."""
+    reason = "Web research is off for this session to protect your privacy."
+    agent = TrackResearchAgent(resolver=_ExactResolver(), offline_reason=reason)
+    outcome = agent.research(TRACK)
+    assert outcome.brief.warnings == (reason,)

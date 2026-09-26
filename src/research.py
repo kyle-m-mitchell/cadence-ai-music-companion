@@ -583,10 +583,12 @@ class TrackResearchAgent:
         resolver: IdentityResolver | None = None,
         researcher: GroundedResearcher | None = None,
         note_writer: CatalogNoteWriter | None = None,
+        offline_reason: str | None = None,
     ) -> None:
         self._resolver = resolver or MusicBrainzResolver()
         self._researcher = researcher
         self._note_writer = note_writer
+        self._offline_reason = offline_reason
 
     @staticmethod
     def _fallback(
